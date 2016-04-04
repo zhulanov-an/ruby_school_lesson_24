@@ -15,7 +15,6 @@ get '/visit' do
 end
 
 post '/visit' do
-
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
@@ -29,16 +28,10 @@ post '/visit' do
     :datetime => "Введите дату"
   }
 
-  hash_errors.each do |key, value|
-      if params[key] == ''
-        @error << value
-      end
-  end
-
+  hash_errors.each {|key, value| @error << value if params[key] == ''}
   if @error.size!= 0
     return (erb :visit)
   end
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
-
 end
