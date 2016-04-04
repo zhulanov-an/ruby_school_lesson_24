@@ -46,7 +46,7 @@
 			</nav>
 
 			<div>
-			      <%if @error.size != 0 then %>
+			      <%if @error.is_a?(Array) && @error.size != 0 then %>
 			          <div class="alert alert-danger">
 			          	<ul>
 			          		<% @error.each do |item| %>
