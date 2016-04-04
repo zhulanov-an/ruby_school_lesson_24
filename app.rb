@@ -24,6 +24,17 @@ post '/visit' do
 
   if @username.length == 0
     @error = "Name is empty!"
+  end
+  
+  if @phone.length == 0
+    @error = "Phone is empty!"
+  end
+
+  if @datetime.length == 0
+    @error = "Date is empty!"
+  end
+
+  if @error!=""
     return erb(:visit)
   end
 
