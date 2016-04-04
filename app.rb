@@ -21,21 +21,22 @@ post '/visit' do
 	@datetime = params[:datetime]
 	@barber = params[:barber]
 	@color = params[:color]
+  @error = []
 
-  if @username.length == 0
-    @error = "Name is empty!"
-  end
-  
-  if @phone.length == 0
-    @error = "Phone is empty!"
+  hash_errors = {
+    :username => "Введите имя",
+    :phone => "Введите телефон",
+    :datetime => "Введите дату"
+  }
+
+  hash_errors.each do |key, value|
+      if params[key] == ''
+        @error << value
+      end
   end
 
-  if @datetime.length == 0
-    @error = "Date is empty!"
-  end
-
-  if @error!=""
-    return erb(:visit)
+  if @error.size!= 0
+    return (erb :visit)
   end
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
